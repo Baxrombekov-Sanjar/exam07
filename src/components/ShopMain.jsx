@@ -1,7 +1,7 @@
 import Cleave from "cleave.js/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { uid } from "uid";
 import { FaChevronLeft } from "react-icons/fa6";
 import { addShop } from "../features/NewShop/NewShopSlice";
@@ -11,16 +11,22 @@ export default function StoreMain() {
   const dispatch = useDispatch();
   const [shopTitle, setShopTitle] = useState("");
   const [quadrature, setquadrature] = useState("");
+  const navigate = useNavigate();
   const addShopsHandler = () => {
-    const shop = {
-      id: uid(),
-      title: shopTitle,
-      quadrature: quadrature,
-    };
-
-    dispatch(addShop(shop));
-    setShopTitle("");
-    setquadrature("");
+    if (shopTitle && quadrature !== "") {
+      const shop = {
+        id: uid(),
+        title: shopTitle,
+        quadrature: quadrature,
+      };
+      navigate("/");
+      alert("Товар успешно добавлен!");
+      dispatch(addShop(shop));
+      setShopTitle("");
+      setquadrature("");
+    } else {
+      return;
+    }
   };
   return (
     <>
@@ -47,7 +53,7 @@ export default function StoreMain() {
                 ? "bg-blue-600 px-[16px] font-medium py-[15px] mr-4 rounded-2xl"
                 : "px-[16px] font-medium bg-gray-100 py-[15px] mr-4  rounded-2xl"
             }
-            style={{ background: mode ? "#404040" : "#eee" }}
+            style={{ background: mode ? "#404040" : "" }}
           >
             Создать
           </button>
