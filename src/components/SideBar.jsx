@@ -1,16 +1,31 @@
 /* eslint-disable react/prop-types */
 import logo from "/billz-logo-full.svg";
+import darkLogo from "/Layer 1.svg";
 import { IoMdSettings } from "react-icons/io";
 import { FaChevronLeft } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDarkMode } from "../features/DarkMode/DarkModeSlice";
 
+toggleDarkMode;
 export default function SideBar({ showShops }) {
+  const { mode } = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch();
   return (
     <>
-      <div className="w-1/4 pt-12 bg-gray-100">
-        <img src={logo} alt="logo" className="mb-12 pl-8" />
+      <div
+        className={
+          mode
+            ? "w-1/4 pt-12 bg-gray-800 text-white"
+            : "w-1/4 pt-12 bg-gray-100 text-gray-500"
+        }
+      >
+        <img src={mode ? darkLogo : logo} alt="logo" className="mb-12 pl-8" />
         <p className="flex items-center settings pl-8">
           <FaChevronLeft />
-          <IoMdSettings className="text-blue-600" />
+          <IoMdSettings
+            className="text-blue-600"
+            onClick={() => dispatch(toggleDarkMode())}
+          />
           <span>Настройки</span>
         </p>
         <ul>
@@ -42,10 +57,16 @@ export default function SideBar({ showShops }) {
           </li>
         </ul>
         <div className="mt-32 ml-8 flex items-center">
-          <div className="w-10 h-10 rounded-full bg-blue-600 text-white items-center flex justify-center mr-2">
+          <div
+            className={
+              mode
+                ? "w-10 h-10 rounded-full bg-white text-gray-600 items-center flex justify-center mr-2"
+                : "w-10 h-10 rounded-full bg-blue-600 text-white items-center flex justify-center mr-2"
+            }
+          >
             ДО
           </div>
-          <p className="font-bold text-gray-500">
+          <p className="font-bold">
             Достонхон <br />
             Озодходжаев
           </p>

@@ -4,7 +4,6 @@ ul li,
   height: 48px;
   display: flex;
   align-items: center;
-  color: var(--Gray-600, #6f6f6f);
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

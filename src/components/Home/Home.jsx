@@ -4,18 +4,23 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../SideBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NewShop from "../NewShop";
 
 export default function Home() {
+  const { mode } = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch();
   const shops = useSelector((state) => state.shops.shops);
-  console.log(shops);
   const [show, setShow] = useState(false);
   function showShops() {
     setShow(!show);
   }
   return (
-    <div className="h-screen flex">
+    <div
+      className={
+        mode ? "h-screen flex bg-gray-900 text-white" : "h-screen flex"
+      }
+    >
       <SideBar showShops={showShops} />
       {show ? (
         <div className="w-3/4">
@@ -26,22 +31,26 @@ export default function Home() {
           <div className="relative ml-8 mb-4">
             <CiSearch className="absolute top-6 text-xl left-4 text-gray-400" />
             <input
-              className="w-3/4 py-[19px] px-[45px] rounded-2xl bg-gray-100"
+              className={
+                mode
+                  ? "w-3/4 py-[19px] px-[45px] rounded-2xl bg-gray-800"
+                  : "w-3/4 py-[19px] px-[45px] rounded-2xl bg-gray-100"
+              }
               type="text"
               name="storename"
               placeholder={"Название магазина"}
             />
             <Link
               to={"/stors"}
-              className="w-1/5 border-2 mr-2 ml-4 py-[19px] px-[16px] rounded-2xl bg-blue-600 text-[#fff]"
+              className="w-1/5 mr-2 ml-4 py-[19px] px-[16px] rounded-2xl bg-blue-600 text-[#fff]"
             >
               <span className="pr-2 font-semibold text-base hover:text-white">
                 +
-              </span>{" "}
+              </span>
               Новый магазин
             </Link>
           </div>
-          <div className="mx-8 mb-3 border-2 text-gray-400 border-x-0 py-3 px-4 flex justify-between ">
+          <div className="mx-8 mb-3 border-y text-gray-400 py-3 px-4 flex justify-between ">
             <p>Магазин</p>
             <p>Кол-во касс</p>
             <p className="pr-20">Действие</p>
