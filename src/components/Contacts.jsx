@@ -1,9 +1,12 @@
 import Cleave from "cleave.js/react";
 import "cleave.js/dist/addons/cleave-phone.uz";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function Contacts() {
   const { mode } = useSelector((state) => state.darkMode);
+  const [firstNum, setfirstNum] = useState("");
+  const [secondNum, setSecondNum] = useState("");
   return (
     <>
       <section
@@ -24,8 +27,9 @@ export default function Contacts() {
             <br />
 
             <Cleave
-              options={{ phone: true, phoneRegionCode: "uz" }}
+              options={{ phone: true, phoneRegionCode: "UZ" }}
               placeholder="+xxx xx xxx xx xx"
+              onChange={(e) => setfirstNum(e.target.value)}
               className={
                 mode
                   ? "bg-gray-800 w-[350px]  outline-none h-14 rounded-2xl px-4"
@@ -33,8 +37,9 @@ export default function Contacts() {
               }
             />
             <Cleave
-              options={{ phone: true, phoneRegionCode: "uz" }}
+              options={{ phone: true, phoneRegionCode: "UZ" }}
               placeholder="+xxx xx xxx xx xx"
+              onChange={(e) => secondNum(e.target.value)}
               className={
                 mode
                   ? "bg-gray-800 w-[350px] ml-[32px] outline-none h-14 rounded-2xl px-4"

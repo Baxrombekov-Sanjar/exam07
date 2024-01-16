@@ -1,9 +1,9 @@
 import "./Shops.css";
-import StoreMain from "../ShopMain";
-import SideBar from "../SideBar";
-import Contacts from "../Contacts";
-import Requisites from "../Requisites";
-import Checks from "../Checks";
+import StoreMain from "../../components/ShopMain";
+import SideBar from "../../components/SideBar";
+import Contacts from "../../components/Contacts";
+import Requisites from "../../components/Requisites";
+import Checks from "../../components/Checks";
 import { useSelector } from "react-redux";
 export default function Stors() {
   const { mode } = useSelector((state) => state.darkMode);

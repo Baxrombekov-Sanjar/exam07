@@ -1,28 +1,22 @@
 /* eslint-disable react/jsx-key */
-import { CiSearch } from "react-icons/ci";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../SideBar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import NewShop from "../NewShop";
 
 export default function Home() {
   const { mode } = useSelector((state) => state.darkMode);
-  const dispatch = useDispatch();
-  const shops = useSelector((state) => state.shops.shops);
-  const [show, setShow] = useState(false);
-  function showShops() {
-    setShow(!show);
-  }
   return (
     <div
       className={
         mode ? "h-screen flex bg-gray-900 text-white" : "h-screen flex"
       }
     >
-      <SideBar showShops={showShops} />
-      {show ? (
+      <SideBar />
+
+      {/* {show ? (
         <div className="w-3/4">
           <h2 className="text-4xl font-bold mt-12 ml-8 mb-8">
             Настройки магазинов
@@ -42,7 +36,7 @@ export default function Home() {
             />
             <Link
               to={"/stors"}
-              className="w-1/5 mr-2 ml-4 py-[19px] px-[16px] rounded-2xl bg-blue-600 text-[#fff]"
+              className="w-1/5 mr-2 ml-4 py-[19px] px-[16px] rounded-2xl bg-blue-600 text-[#fff] hover:text-gray-100"
             >
               <span className="pr-2 font-semibold text-base hover:text-white">
                 +
@@ -60,11 +54,11 @@ export default function Home() {
           ))}
           <hr className="mx-8" />
         </div>
-      ) : (
-        <h1 className="text-3xl text-center m-auto font-medium">
-          Добро пожаловать <br /> Достонхон Озодходжаев!
-        </h1>
-      )}
+      ) : ( */}
+      <h1 className="text-3xl text-center m-auto font-medium">
+        Добро пожаловать <br /> Достонхон Озодходжаев!
+      </h1>
+      {/* )} */}
     </div>
   );
 }

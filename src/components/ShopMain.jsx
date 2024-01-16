@@ -17,10 +17,10 @@ export default function StoreMain() {
       const shop = {
         id: uid(),
         title: shopTitle,
-        quadrature: quadrature,
+        quadrature,
       };
-      navigate("/");
-      alert("Товар успешно добавлен!");
+      navigate("/shopList");
+      alert("Магазин успешно добавлен!");
       dispatch(addShop(shop));
       setShopTitle("");
       setquadrature("");
@@ -38,7 +38,7 @@ export default function StoreMain() {
         }
       >
         <h2 className="text-4xl font-bold mt-12 ml-8 mb-8 flex items-center">
-          <Link to={"/"}>
+          <Link to={"/shopList"}>
             <FaChevronLeft className="w-10 rounded-full p-3 cursor-pointer h-10 bg-gray-100 text-blue-500 mr-4" />
           </Link>
           <p>
@@ -50,10 +50,10 @@ export default function StoreMain() {
             onClick={() => addShopsHandler()}
             className={
               shopTitle && quadrature
-                ? "bg-blue-600 px-[16px] font-medium py-[15px] mr-4 rounded-2xl"
-                : "px-[16px] font-medium bg-gray-100 py-[15px] mr-4  rounded-2xl"
+                ? "bg-blue-600 px-[16px] text-white font-medium py-[15px] mr-4 rounded-2xl"
+                : "px-[16px] font-medium bg-gray-300 text-black py-[15px] mr-4  rounded-2xl"
             }
-            style={{ background: mode ? "#404040" : "" }}
+            // style={{ background: mode ? "#404040" : "#" }}
           >
             Создать
           </button>
